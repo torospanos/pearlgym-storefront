@@ -112,6 +112,14 @@ export default function ProductActions({
       return true
     }
 
+    // If inventory_quantity is not returned by API, assume in stock
+    if (
+      selectedVariant?.manage_inventory &&
+      selectedVariant?.inventory_quantity == null
+    ) {
+      return true
+    }
+
     // Otherwise, we can't add to cart
     return false
   }, [selectedVariant])
